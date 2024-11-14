@@ -8,7 +8,6 @@ public class Main {
         System.out.print("Skriv ett namn för spelare 2: ");
         String name2 = sc.next();
 
-
         Game game = new Game(name1, name2);
         game.startGame(sc);
     }

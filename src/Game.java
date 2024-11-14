@@ -18,7 +18,7 @@ public class Game {
             System.out.println("Välkommen till Furkan's tic tac toe!");
             while(!gameOver){
                 Player current = (currentPlayer == 1) ? player1 : player2;
-                System.out.println("Spelar nu:" + current.getName());
+                System.out.println("Spelar nu: " + current.getName());
                 board.printBoard();
 
                 boolean selectionPlaced = false;
@@ -41,7 +41,6 @@ public class Game {
 
                 if(board.boardIsFull()){
                     System.out.println("Det blev oavgjort!");
-                    board.printBoard();
                     gameOver = true;
                 };
                 currentPlayer = (currentPlayer == 1) ? 2 : 1;
