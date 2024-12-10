@@ -1,8 +1,9 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 
 public class Board {
-    private String[][] board;
+    private final String[][] board;
     private static final String EMPTY = " ";
 
     public Board(){
@@ -11,21 +12,23 @@ public class Board {
     }
 
     public boolean placeSelection(int box, Player player){
+        //we only have 9 boxes, so we retry if the input is netrual, negative or over 9.
         if(box < 1 || box > 9){
-            System.out.println("Skriv in en siffra mellan 1 och 9");
+            System.out.println("Skriv in en siffra mellan 1 och 9, var säker på att boxen är tom");
             return false;
         }
 
-        if(box <= 3) {
-            board[0][box-1] = player.getMark();
-            return true;
-        }else if(box <= 6){
-            board[1][box-4] = player.getMark();
-            return true;
-        }else {
-            board[2][box-7] = player.getMark();
+        //This will make sure we mark the right box. I'm not a mathematical genius, got this from ChatGPT.
+        int row = (box - 1) / 3;
+        int col = (box - 1) % 3;
+
+        if(board[row][col].equals(EMPTY)){
+            board[row][col] = player.getMark();
             return true;
         }
+
+        System.out.println("Detta");
+        return false;
     };
 
     public void printBoard() {
@@ -49,7 +52,7 @@ public class Board {
         boolean isFull = true;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if(board[i][j] == EMPTY){
+                if(board[i][j].equals(EMPTY)){
                     isFull = false;
                 }
             }
